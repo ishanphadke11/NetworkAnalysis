@@ -1,0 +1,54 @@
+header-name,header-value,#packets
+Cross-Origin-Resource-Policy,cross-origin,6
+CDNUUID,ff627e80-0c9b-4d85-802e-d1a339ddd239-23216672318,1
+CDNUUID,33cf030b-0680-4679-a70a-fe7ca9db1b40-23214832768,1
+CDNUUID,8a38215b-3d80-42a4-8b21-0b4a43554f9c-23220021613,1
+CDNUUID,52205af0-164c-4d33-b824-11018afb53f7-23214058128,1
+CDNUUID,5a5fb615-9da6-4d16-b115-e6f58374cf4e-23178898016,1
+X-Cache,hit-fresh,2
+X-Cache,miss, hit-fresh,3
+Via,http/1.1 inbom5-edge-bx-001.ts.apple.com (acdn/252.14441), http/1.1 inbom5-edge-bx-001.ts.apple.com (acdn/14454.1),1
+Via,http/1.1 inbom5-edge-bx-007.ts.apple.com (acdn/252.14441), http/1.1 inbom5-edge-bx-007.ts.apple.com (acdn/14454.1),1
+Via,http/1.1 inbom5-edge-bx-012.ts.apple.com (acdn/14454.1),1
+Via,http/1.1 inbom5-edge-bx-014.ts.apple.com (acdn/14454.1),1
+Via,http/1.1 inbom5-edge-bx-009.ts.apple.com (acdn/262.14454), http/1.1 inbom5-edge-bx-009.ts.apple.com (acdn/14454.1),1
+Accept-Encoding,gzip, deflate,1
+Cache-Control,max-age=30, must-revalidate,5
+Cache-Control,max-age=31536000,5
+Age,16599670,1
+Age,16599664,1
+Age,3275521,1
+Age,5249555,1
+Age,2970784,1
+Content-Type,text/plain,5
+Content-Type,text/html,5
+Accept,*/*,1
+Last-Modified,Thu, 04 Jul 2024 02:11:06 GMT,1
+Last-Modified,Thu, 04 Jul 2024 02:11:08 GMT,1
+Last-Modified,Tue, 12 Nov 2024 10:47:56 GMT,1
+Last-Modified,Thu, 05 Dec 2024 07:08:27 GMT,1
+Last-Modified,Sun, 08 Dec 2024 19:44:22 GMT,1
+User-Agent,Twitter/12 CFNetwork/1568.100.1 Darwin/24.0.0,1
+User-Agent,PAN GlobalProtect/6.2.4-652 (Apple Mac OS X 15.0.0),15
+Content-Length,0,6
+Content-Length,22,5
+Content-Length,69,5
+Accept-Language,en-US,en;q=0.9,1
+Date,Sun, 12 Jan 2025 05:12:14 GMT,2
+Date,Thu, 04 Jul 2024 02:11:06 GMT,1
+Date,Thu, 04 Jul 2024 02:11:08 GMT,1
+Date,Sun, 12 Jan 2025 05:07:57 GMT,1
+Date,Sun, 12 Jan 2025 05:00:31 GMT,2
+Date,Sun, 08 Dec 2024 19:44:22 GMT,1
+Date,Sun, 12 Jan 2025 05:00:28 GMT,2
+Date,Tue, 12 Nov 2024 10:47:56 GMT,1
+Date,Thu, 05 Dec 2024 07:08:27 GMT,1
+Date,Sun, 12 Jan 2025 05:12:11 GMT,2
+Date,Sun, 12 Jan 2025 04:57:25 GMT,2
+Access-Control-Allow-Origin,*,5
+Connection,keep-alive,11
+Connection,Keep-Alive,15
+Host,connectivitycheck.gstatic.com,1
+Host,www.msftconnecttest.com,5
+Host,clients3.google.com,5
+Host,captive.apple.com,5

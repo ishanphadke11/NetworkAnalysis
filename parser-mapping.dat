@@ -1,0 +1,4 @@
+HTTP=../HTTPParser/libHTTPParser.dylib
+DNS=../DNSParser/libDNSParser.dylib
+FTP=../FTPParser/libFTPParser.dylib
+SSH=../SSHParser/libSSHParser.dylib

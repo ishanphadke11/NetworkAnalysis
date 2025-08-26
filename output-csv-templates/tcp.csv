@@ -1,0 +1,9 @@
+####connection-stats
+ip1, ip2, port1, port2, packetsIn, packetsOut, bytesIn, bytesOut
+1.1.1.1, 2.2.2.2, 443, 51989, 60, 60, 567, 567
+1.1.1.1, 2.2.2.2, 8443, ...
+
+####general-summary
+#packets, bytes, #unique-ports, uniqueInteractions
+89, 1976, 10, 30
+

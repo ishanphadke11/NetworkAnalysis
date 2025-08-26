@@ -1,0 +1,14 @@
+# Ignore C++ executables (no extension)
+*.out
+*.exe
+*.o
+*.obj
+*.a
+*.so
+*.dll
+
+# Ignore dSYM folders (macOS debug symbol files)
+*.dSYM/
+
+# Ignore build directories
+build/

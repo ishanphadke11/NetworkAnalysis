@@ -1,0 +1,5 @@
+#url,#count
+connectivitycheck.gstatic.com/generate_204,1
+www.msftconnecttest.com/connecttest.txt,5
+clients3.google.com/generate_204,5
+captive.apple.com/generate_204,5

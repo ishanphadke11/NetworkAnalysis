@@ -1,0 +1,14 @@
+####general-summary
+#packets, bytes, #GET, #PUT, #POST, #PATCH, #DELETE
+10, 211, 5, 3, 1, 0, 1
+
+####status-code-resport
+status-code, #packets
+200, 10
+
+####header-stats
+header-name, header-value, #packets
+user-agent, chrome, 10
+
+####url
+#url,#packets
