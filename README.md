@@ -1,31 +1,68 @@
-# Network Analysis
+# Network Protocol Analyzer
 
-## Phase 1A: IP packets parsing
-    The first phase will look at the IP packets in the PCAP files. The parser will go throught and extract al the important information from these packets. This includes, the number of unique IP addresses, the number of unique interactions between two IP addresses, the total number of IP packets, the average size in bytes of the datagram, and the average time-to-live (TTL). 
-    
-    I will create a class called IPParser. This class will have members for the path to the PCAP file, an ordered set to store all the unique IP addresses, a hash map to track all the unique interactions between two IP addresses, a running total of the datgram size, a counter for the number of packets, a map that includes unique IP addresses as the key and the total datagram size sent by that IP address (initialized to 0), and another map that includes the unique IP addresses as the key and the number of times they sent a message. There will be yet another map that stores the unique IP address and the number of times it recieved a message.
+This project is a modular C++ network analysis tool that parses `.pcap` files and generates detailed CSV reports for each protocol layer, including:
 
-    There will be a constructor that takes the file path as an argument. It will load the PCAp file, and intitialize all the data structures. There will be a parse function that will read the PCAP file and for each IP packet encountered, it will call another fucntion called process_packet that will take the IP packet as a string. From the given string it will extract all the information needed and populate the respective fields. For all unique IP addresses encountered, add the datagram size the value. If the IP address already exists in the map, add the datagram size to the preexisting value.
-    
-    After the entire packet is processed, another fucntion called average_size wil be called. This function will simply calulate the average datafram size by dividing the total datagram size by the number of packets. It will then call another function called average_TTL which will do the exact same thing only for TTL. Finally it will call another function called generate_report that will create three reports. One will be a general summary report that will gather all the information about the IP packets in the give file and display them in a well formatted text file. The next report will be a host specific summary. It will use all the unique IP addresses as the key (first column) for a CSV file. The other columns will be for the total datagram size sent by that IP address, the number of datagrams sent by the IP address, and the numebr of datagrams recieved by the IP address. The next report will be a conversation specific report. The key for this CSV file will include the two communicating IP addresses, the total size of data sent in the conversation.
+- IPv4
+- TCP
+- UDP
+- HTTP (https://github.com/ishanphadke11/http-parser)
+- DNS (https://github.com/ishanphadke11/dns-parser)
+- FTP (https://github.com/ishanphadke11/ftp-parser)
 
-## Phase 1B: TCP packets parsing
-    I will create a class called TCPParser. This class will have members for the path to the PCAP file, a hash map to track all unique TCP connections (using source and destination IP addresses and ports as the key), a running total of the TCP payload size, a counter for the number of TCP packets, and a map to keep track of individual connection statistics, such as the total data transmitted and the number of packets sent. It will also include additional members to track the counts of TCP flags (such as SYN, ACK, and FIN) for each connection.
+The tool is built using object-oriented programming principles and employs the **Factory Design Pattern** to dynamically select the appropriate parser for each packet.
 
-    There will be a constructor that takes the file path as an argument. It will load the PCAP file and initialize all the data structures. The class will include a parse function that will read the PCAP file, and for each TCP packet encountered, it will call another function called process_packet. The process_packet function will extract all the necessary information from the TCP packet, such as source and destination IPs, source and destination ports, sequence and acknowledgment numbers, flags, and payload size. It will populate the respective data structures and update the statistics for each connection.
+---
 
-    After all packets have been processed, a function called average_payload_size will calculate the average TCP payload size by dividing the total payload size by the number of TCP packets. Finally, a function called generate_report will create two detailed reports. The first will be a general summary report that includes overall statistics such as the total number of TCP packets, total payload size, and average payload size. The second will be a connection-specific summary that lists all unique connections along with their associated statistics, including the total data transferred, number of packets, and counts of SYN, ACK, and FIN flags.
+## Features
 
-## Phase 1C: UDP packets parsing
-    I will create a class called UDPParser. This class will have members for the path to the PCAP file, a hash map to track all unique UDP connections (using source and destination IP addresses and ports as the key), a running total of the UDP payload size, a counter for the number of UDP packets, and a map to store statistics for each connection, such as the total data transmitted and the number of packets sent. It will also include a set to keep track of unique port numbers encountered during parsing.
+- **Layered Parsing**: Supports parsing of multiple protocol layers.
+- **Modular Design**: Application-layer parsers (HTTP, DNS, FTP) are implemented as separate dynamic libraries.
+- **Extensibility**: New protocol parsers can be added without modifying the core codebase.
+- **CSV Reporting**: Generates structured CSV reports for each protocol layer.
+- **Factory Pattern**: Centralized parser creation logic for clean and scalable architecture.
 
-    There will be a constructor that takes the file path as an argument. It will load the PCAP file and initialize all the data structures. The class will include a parse function that will read the PCAP file, and for each UDP packet encountered, it will call another function called process_packet. The process_packet function will extract all the necessary information from the UDP packet, such as source and destination IPs, source and destination ports, and payload size. It will populate the respective data structures and update the statistics for each connection.
+---
 
-    After all packets have been processed, a function called average_payload_size will calculate the average UDP payload size by dividing the total payload size by the number of UDP packets. Finally, a function called generate_report will create two detailed reports. The first will be a general summary report that includes overall statistics such as the total number of UDP packets, total payload size, and average payload size. The second will be a connection-specific summary that lists all unique connections along with their associated statistics, including the total data transferred and the number of packets sent.
+## Architecture Overview
 
-# Phase 1D: HTTP packets parsing
-    I will create a class called HTTPParser. This class will have members for the path to the PCAP file, a hash map to track all unique HTTP transactions (using source and destination IP addresses and ports as the key, along with the HTTP method and resource requested), a running total of the HTTP payload size, a counter for the number of HTTP packets, and a map to store statistics for each transaction, such as the total data transmitted and the number of requests and responses. It will also include additional data structures to keep track of HTTP status codes and their frequencies, as well as unique HTTP methods encountered.
+### 1. **Parser Base Class**
+All protocol parsers inherit from a common `Parser` base class, which defines the interface for parsing packets and generating reports.
 
-    There will be a constructor that takes the file path as an argument. It will load the PCAP file and initialize all the data structures. The class will include a parse function that will read the PCAP file, and for each HTTP packet encountered, it will call another function called process_packet. The process_packet function will extract all the necessary information from the HTTP packet, such as source and destination IPs, source and destination ports, HTTP method, resource requested, status code, and payload size. It will populate the respective data structures and update the statistics for each transaction.
+### 2. **Derived Parsers**
+Each protocol (IPv4, TCP, UDP, etc.) has its own derived parser class that implements the parsing logic specific to that protocol.
 
-    After all packets have been processed, a function called average_payload_size will calculate the average HTTP payload size by dividing the total payload size by the number of HTTP packets. Another function, status_code_summary, will generate a breakdown of HTTP status codes and their frequencies. Finally, a function called generate_report will create three detailed reports. The first will be a general summary report that includes overall statistics such as the total number of HTTP packets, total payload size, average payload size, and a breakdown of HTTP methods. The second will be a transaction-specific summary that lists all unique HTTP transactions along with their associated statistics, including the total data transferred and the number of requests and responses. The third will be a status code report that summarizes the frequency of each HTTP status code encountered.
+### 3. **Parser Factory**
+The `ParserFactory` class is responsible for returning the correct parser instance based on the packet's protocol type.
+
+### 4. **Controller Class**
+The `Controller` class manages the overall workflow:
+- Loads the `.pcap` file
+- Iterates through packets
+- Uses the factory to instantiate the correct parser
+- Delegates parsing and report generation
+
+### 5. **Dynamic Libraries**
+Application-layer parsers (HTTP, DNS, FTP) are compiled as separate dynamic libraries. These are loaded at runtime based on a mapping file, allowing seamless integration of new protocols.
+
+---
+
+## Adding New Protocol Parsers
+
+To add a new application-layer parser:
+1. Create a new parser class that inherits from `Parser`.
+2. Compile it as a dynamic library.
+3. Add its entry to the protocol mapping file.
+4. No changes are required in the main codebase.
+
+---
+
+## Dependencies
+
+- Standard C++ STL
+- Dynamic linking support (`dlopen`, `dlsym` on Unix-like systems)
+
+---
+
+## Future Improvements
+
+I am currenlty working on implementing an LLM supported chatbot so that users can ask questions about the generated reports and get information including visualizations.
